@@ -19,18 +19,18 @@ The architecture is simple yet powerful. Two EventBridge schedules are configure
 ```mermaid
 graph TD
     subgraph "Scheduler (EventBridge)"
-        A[Schedule: Start Instances<br>cron(0 9 ? * MON-FRI *)]
-        B[Schedule: Stop Instances<br>cron(30 17 ? * MON-FRI *)]
+        A["Schedule: Start Instances<br>cron(0 9 ? * MON-FRI *)"]
+        B["Schedule: Stop Instances<br>cron(30 17 ? * MON-FRI *)"]
     end
 
     subgraph "Compute & Logic"
-        C[Lambda: start-ec2-instances]
-        D[Lambda: stop-ec2-instances]
-        E[IAM Role<br>Permissions: ec2:Start, ec2:Stop, ec2:Describe]
+        C["Lambda: start-ec2-instances"]
+        D["Lambda: stop-ec2-instances"]
+        E["IAM Role<br>Permissions:<br>ec2:Start, ec2:Stop, ec2:Describe"]
     end
 
     subgraph "Target Resources"
-        F[EC2 Instances<br>Tag: Auto-Start-Stop=True]
+        F["EC2 Instances<br>Tag: Auto-Start-Stop=True"]
     end
 
     subgraph "Monitoring"
@@ -46,6 +46,7 @@ graph TD
     C --writes logs to--> G
     D --writes logs to--> G
 ```
+
 
 ## Technology Stack
 
